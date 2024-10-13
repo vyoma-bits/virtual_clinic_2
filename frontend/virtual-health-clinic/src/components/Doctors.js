@@ -73,7 +73,7 @@ const Doctors = () => {
     };
 
     try {
-      const response = await axios.post("https://clinic.codewithvyoma.ninja/user/user/send-email", emailData);
+      const response = await axios.post("https://clinic.codewithvyoma.ninja/user/send-email", emailData);
       console.log("Email sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending email:", error);
