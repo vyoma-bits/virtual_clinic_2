@@ -16,7 +16,7 @@ const UpdateUser = () => {
   });
 
   const handleFetchUser = async () => {
-    const response = await fetch(`https://clinic.codewithvyoma.ninja/user/user/${userId}`);
+    const response = await fetch(`https://clinic.codewithvyoma.ninja/user/${userId}`);
     if (response.ok) {
       const fetchedUser = await response.json();
       setUser(fetchedUser);
