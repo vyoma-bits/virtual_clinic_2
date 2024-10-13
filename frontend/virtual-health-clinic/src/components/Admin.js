@@ -9,7 +9,7 @@ const Admin = () => {
   useEffect(() => {
     const fetchTotalUsers = async () => {
       try {
-        const response = await fetch('https://clinic.codewithvyoma.ninja/user/user/users');
+        const response = await fetch('https://clinic.codewithvyoma.ninja/user/users');
         const data = await response.json();
         setTotalUsers(data.length);  // Assuming it returns an array of users
       } catch (error) {
