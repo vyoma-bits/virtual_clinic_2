@@ -1,0 +1,103 @@
+/* src/Connect.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #9face6 0%, #74ebd5 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.connect-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.video-container {
+    width: 800px;
+    height: 600px;
+    border: 2px solid #3498db; /* Border color for video container */
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #f3f3f3; /* Light background color */
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.btn-leave {
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    background-color: #e74c3c; /* Red color for leave button */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-leave:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: translateY(-2px);
+}
+
+.wait-message {
+    display: none; /* Initially hidden */
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.wait-message.visible {
+    display: block; /* Show when loading */
+}
+
+.loader {
+    display: none; /* Initially hidden */
+    margin: 20px auto;
+    width: 80px;
+    height: 80px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    animation: spin 2s linear infinite;
+}
+
+.loader.visible {
+    display: block; /* Show when loading */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

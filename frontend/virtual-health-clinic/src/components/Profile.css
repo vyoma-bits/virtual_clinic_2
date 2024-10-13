@@ -1,0 +1,88 @@
+/* Base styles for the profile container */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Title styles */
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* User info styles */
+  .user-info {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Vaccination status section styles */
+  .vaccination-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Spacing between cards */
+    justify-content: center; /* Center the cards */
+  }
+  
+  /* Individual vaccination card styles */
+  .vaccination-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  /* Status indicator */
+  .status-indicator {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #e0e0e0; /* Default gray */
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for vaccinated and not vaccinated status */
+  .vaccination-card.vaccinated .status-indicator {
+    background-color: #4caf50; /* Green for vaccinated */
+  }
+  
+  .vaccination-card.not-vaccinated .status-indicator {
+    background-color: #f44336; /* Red for not vaccinated */
+  }
+  
+  /* Card hover effect */
+  .vaccination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Animation for fading in the profile container */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .vaccination-card {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+  

@@ -1,0 +1,121 @@
+/* src/Symptom.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #333;
+}
+
+.symptom-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.symptom-form {
+    background: #fff;
+    padding: 15px; /* Reduced padding for a more compact look */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8em; /* Adjusted for a compact look */
+    color: #333;
+    margin-bottom: 15px; /* Adjusted margin */
+    font-weight: 600;
+}
+
+label {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 5px; /* Reduced margin */
+    display: block;
+}
+
+select,
+input[type="number"] {
+    width: 100%;
+    padding: 8px; /* Adjusted padding */
+    font-size: 0.9em;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f0f4f8;
+    margin-bottom: 10px; /* Adjusted margin */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+select:focus,
+input[type="number"]:focus {
+    border-color: #74ebd5;
+    box-shadow: 0 0 8px rgba(116, 235, 213, 0.4);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px; /* Adjusted padding */
+    font-size: 1em;
+    background-color: #74ebd5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.4s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #00bfa5;
+    box-shadow: 0 5px 20px rgba(0, 191, 165, 0.5);
+}
+
+button:focus {
+    outline: none;
+}
+
+.result-message {
+    text-align: center;
+    font-size: 1em;
+    margin-top: 15px; /* Adjusted margin */
+    padding: 8px; /* Adjusted padding */
+    border-radius: 8px;
+    font-weight: 500;
+    color: #28a745;
+    background-color: #d4edda;
+}
+
+@media (max-width: 768px) {
+    .symptom-form {
+        padding: 15px; /* Adjusted padding */
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 1.6em; /* Adjusted font size */
+    }
+}

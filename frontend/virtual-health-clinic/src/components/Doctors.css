@@ -1,0 +1,45 @@
+h1 {
+    color: #3498db;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .doctor-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .doctor-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .doctor-card img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  
+  .doctor-info {
+    margin-top: 10px;
+  }
+  
+  .btn-connect {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-connect:hover {
+    background-color: #2980b9;
+  }
+  
