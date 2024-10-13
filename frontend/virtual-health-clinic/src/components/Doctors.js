@@ -61,7 +61,7 @@ const Doctors = () => {
               <h1>Patient Meeting Request</h1>
               <p>Dear ${doctorName},</p>
               <p>A patient has requested you to join a meeting with them. Please click the link below to join the meeting:</p>
-              <a href="http://127.0.0.1:5500/index.html?roomId=${roomId}" class="button">Join Meeting</a>
+              <a href="https://lionfish-app-tlrzq.ondigitalocean.app?roomId=${roomId}" class="button">Join Meeting</a>
               <p>Thank you!</p>
             </div>
             <div class="footer">
@@ -78,7 +78,7 @@ const Doctors = () => {
     } catch (error) {
       console.error("Error sending email:", error);
     }
-    window.location.href = `http://127.0.0.1:5500/index.html?roomId=${roomId}`;
+    window.location.href = `https://lionfish-app-tlrzq.ondigitalocean.app?roomId=${roomId}`;
   };
 
   const doctors = [
