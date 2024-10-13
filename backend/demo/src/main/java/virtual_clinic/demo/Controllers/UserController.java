@@ -16,6 +16,7 @@ import com.mailjet.client.ClientOptions;
 
 import com.mailjet.client.resource.Emailv31;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,11 @@ public class UserController {
     public String updateUser(@RequestBody User user) {
         userRepository.save(user);
         return "Update successful";
+    }
+    @DeleteMapping("/delete")
+    public String deleteUser() {
+        userRepository.deleteAll();
+        return "Delete successful";
     }
     @GetMapping("/user/{id}")
     public User getUser(@PathVariable int id) {
