@@ -37,7 +37,7 @@ const UpdateUser = () => {
     e.preventDefault();
     const updatedUser = { ...user, ...vaccinatedStatus };
 
-    const response = await fetch(`https://clinic.codewithvyoma.ninja/user/user/update`, {
+    const response = await fetch(`https://clinic.codewithvyoma.ninja/user/update`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
