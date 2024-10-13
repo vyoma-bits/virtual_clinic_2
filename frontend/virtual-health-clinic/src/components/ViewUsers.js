@@ -7,7 +7,7 @@ const ViewUsers = () => {
   useEffect(() => {
     // Fetch all users from the backend API
     const fetchUsers = async () => {
-      const response = await fetch('http://128.199.31.193:8080/user/users');
+      const response = await fetch('https://clinic.codewithvyoma.ninja/user/user/users');
       const data = await response.json();
       setUsers(data);
     };

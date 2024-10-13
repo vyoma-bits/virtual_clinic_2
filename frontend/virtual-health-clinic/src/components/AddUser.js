@@ -18,7 +18,7 @@ const AddUser = () => {
       address 
     };
 
-    const response = await fetch('http://128.199.31.193:8080/user/register', {
+    const response = await fetch('https://clinic.codewithvyoma.ninja/user/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
