@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat Support</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            display: none;
+            z-index: 1000;
+            background: #fff;
+        }
+        .chat-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .chat-body {
+            height: calc(100% - 100px);
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-footer {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+        .chat-footer input {
+            border: none;
+            flex: 1;
+            padding: 10px;
+            border-radius: 0;
+        }
+        .chat-footer button {
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 0;
+        }
+        .message {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        .message:last-child {
+            border-bottom: none;
+        }
+        .message .name {
+            font-weight: bold;
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="popup-overlay" class="popup-overlay">
+    <div class="popup-content">
+        <h3>Enter Your Details</h3>
+        <div class="mb-3">
+            <input type="text" placeholder="Enter your name" id="popup-name" class="form-control">
+        </div>
+        <div class="mb-3">
+            <input type="text" placeholder="Enter your room ID" id="popup-room" class="form-control">
+        </div>
+        <button class="btn btn-primary" id="popup-submit">Start Chat</button>
+    </div>
+</div>
+
+<div class="chat-icon" id="chat-icon">
+    💬
+</div>
+
+<div class="chat-widget" id="chat-widget">
+    <div class="chat-header" id="chat-header">Chat with us</div>
+    <div class="chat-body" id="chat-body">
+        <div id="message-container"></div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" placeholder="Type your message..." id="message-value">
+        <button id="send-btn">Send</button>
+    </div>
+</div>
+
+<script>
+    let stompClient = null;
+
+    function connect() {
+        let Socket = new SockJS("http://localhost:8080/server1");
+        stompClient = Stomp.over(Socket);
+        let room = localStorage.getItem("room");
+        stompClient.connect({}, (info) => {
+            document.getElementById("chat-widget").style.display = "block";
+            stompClient.subscribe(`/topic/return-to/${room}`, (response) => {
+                showMessage(JSON.parse(response.body));
+            });
+        });
+    }
+
+    function showMessage(message) {
+        let messageContainer = document.getElementById("message-container");
+        let messageDiv = document.createElement("div");
+        messageDiv.className = "message";
+        messageDiv.innerHTML = `<span class="name">${message.name}:</span> ${message.message}`;
+        messageContainer.appendChild(messageDiv);
+        messageContainer.scrollTop = messageContainer.scrollHeight; // Auto-scroll to the bottom
+    }
+
+    function sendMessage() {
+        let jsonOb = {
+            name: localStorage.getItem("name"),
+            message: document.getElementById("message-value").value
+        };
+        let room = localStorage.getItem("room");
+        stompClient.send(`/app/message/${room}`, {}, JSON.stringify(jsonOb));
+        document.getElementById("message-value").value = ''; // Clear the input field
+    }
+
+    document.getElementById("send-btn").addEventListener("click", function() {
+        sendMessage();
+    });
+
+    document.getElementById("chat-header").addEventListener("click", function() {
+        let chatBody = document.getElementById("chat-body");
+        chatBody.style.display = chatBody.style.display === "none" ? "block" : "none";
+    });
+
+    document.getElementById("chat-icon").addEventListener("click", function() {
+        document.getElementById("popup-overlay").style.display = "flex";
+    });
+
+    document.getElementById("popup-submit").addEventListener("click", function() {
+        let name = document.getElementById("popup-name").value;
+        let room = document.getElementById("popup-room").value;
+        localStorage.setItem("name", name);
+        localStorage.setItem("room", room);
+        document.getElementById("popup-overlay").style.display = "none";
+        connect();
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Show chat icon on page load
+        document.getElementById("chat-icon").style.display = "block";
+    });
+</script>
+
+</body>
+</html>
