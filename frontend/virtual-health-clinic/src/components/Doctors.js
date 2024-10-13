@@ -73,7 +73,7 @@ const Doctors = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8080/user/send-email", emailData);
+      const response = await axios.post("http://128.199.31.193:8080/user/send-email", emailData);
       console.log("Email sent successfully:", response.data);
     } catch (error) {
       console.error("Error sending email:", error);

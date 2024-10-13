@@ -35,7 +35,7 @@ const SymptomChecker = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/check-symptoms', symptoms);
+            const response = await axios.post('http://128.199.31.193:5000/check-symptoms', symptoms);
             setResult(`Predicted Disease: ${response.data['Predicted Disease']}`);
         } catch (error) {
             console.error("There was an error checking the symptoms!", error);

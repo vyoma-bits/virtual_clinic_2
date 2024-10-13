@@ -9,7 +9,7 @@ const Admin = () => {
   useEffect(() => {
     const fetchTotalUsers = async () => {
       try {
-        const response = await fetch('http://localhost:8080/user/users');
+        const response = await fetch('http://128.199.31.193:8080/user/users');
         const data = await response.json();
         setTotalUsers(data.length);  // Assuming it returns an array of users
       } catch (error) {

@@ -16,7 +16,7 @@ const UpdateUser = () => {
   });
 
   const handleFetchUser = async () => {
-    const response = await fetch(`http://localhost:8080/user/user/${userId}`);
+    const response = await fetch(`http://128.199.31.193:8080/user/user/${userId}`);
     if (response.ok) {
       const fetchedUser = await response.json();
       setUser(fetchedUser);
@@ -37,7 +37,7 @@ const UpdateUser = () => {
     e.preventDefault();
     const updatedUser = { ...user, ...vaccinatedStatus };
 
-    const response = await fetch(`http://localhost:8080/user/update`, {
+    const response = await fetch(`http://128.199.31.193:8080/user/update`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

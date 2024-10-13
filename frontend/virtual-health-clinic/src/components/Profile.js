@@ -10,7 +10,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/user/user/${userId}`);
+        const response = await fetch(`http://128.199.31.193:8080/user/user/${userId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
