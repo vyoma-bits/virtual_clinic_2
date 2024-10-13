@@ -35,7 +35,7 @@ const SymptomChecker = () => {
         };
 
         try {
-            const response = await axios.post('https://clinic.codewithvyoma.ninja/api/check-symptoms', symptoms);
+            const response = await axios.post('https://symptom.codewithvyoma.ninja/check-symptoms', symptoms);
             setResult(`Predicted Disease: ${response.data['Predicted Disease']}`);
         } catch (error) {
             console.error("There was an error checking the symptoms!", error);
