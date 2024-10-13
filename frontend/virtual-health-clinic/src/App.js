@@ -16,13 +16,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Admin />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/add-user" element={<AddUser />} />
         <Route path="/update" element={<UpdateUser />} /> {/* Corrected here */}
         <Route path="/users" element={<ViewUsers />} />
         <Route path="/home/:userId" element={<Home />} />
         <Route path="/profile/:userId" element={<Profile />} />
-        <Route  path="/login" element={<LoginPage />} />
+        <Route  path="/admin" element={<Admin />} />
 
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/connect/:roomId" element={<VideoCall />} />
